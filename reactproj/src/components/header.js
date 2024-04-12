@@ -1,6 +1,6 @@
 import React, { Component, useEffect } from 'react'
 import './header.css'
-import logo from './assets/img/Air-India-logo.png'
+import logo from './assets/img/logo.png'
 import axios from 'axios';
 //import { Link } from 'react-router-dom';
 
@@ -30,8 +30,8 @@ class Header extends Component {
   return (
     <>
     <nav>
-      <a href="home">
-      <img src={logo} alt="Indian airlines logo"  width={180} height={80} />
+    <a href="home">
+      <img src={logo} alt="Indian airlines logo"  width={100} height={90} />
       </a>
       <div>
         <ul id="navbar" className={this.state.clicked ? "#navbar active":"#navbar"}>
@@ -41,18 +41,18 @@ class Header extends Component {
             </a>
           </li>
           <li>
-          <a href={localStorage.getItem("admin")!==null?'/Admin/occupancy':localStorage.getItem("email")!==null?"/mywallet":null}>
-              {localStorage.getItem("admin")!==null?"Check occupancy":localStorage.getItem("email")!==null?"My wallet":null}
+          <a href={(localStorage.getItem("id")!==null &&localStorage.getItem("role")==="student")?'/list':(localStorage.getItem("id")!==null && localStorage.getItem("role")==="teacher")?"/approve":null}>
+              {(localStorage.getItem("id")!==null &&localStorage.getItem("role")==="student")?"btp list":(localStorage.getItem("id")!==null && localStorage.getItem("role")==="teacher")?"btp requests":null}
             </a>
           </li>
           <li>
-          <a href={localStorage.getItem("admin")!==null?'/Admin/profit':"/index"}>
-              {localStorage.getItem("admin")!==null?"Profit":"Current bookings"}
+          <a href={(localStorage.getItem("id")!==null &&localStorage.getItem("role")==="student")?'/profile':(localStorage.getItem("id")!==null && localStorage.getItem("role")==="teacher")?"/profile":null}>
+              {(localStorage.getItem("id")!==null &&localStorage.getItem("role")==="student")?"Profile":(localStorage.getItem("id")!==null && localStorage.getItem("role")==="teacher")?"Profile":null}
             </a>
           </li>
           <li>
-            <a href={localStorage.getItem("admin")!==null?'/Admin/edit':"/SearchFlight"}>
-              {localStorage.getItem("admin")!==null?"Edit flight details":"Book Flight"}
+          <a href={(localStorage.getItem("id")!==null &&localStorage.getItem("role")==="student")?'/profile':(localStorage.getItem("id")!==null && localStorage.getItem("role")==="teacher")?"/profile":null}>
+              {(localStorage.getItem("id")!==null &&localStorage.getItem("role")==="student")?"Profile":(localStorage.getItem("id")!==null && localStorage.getItem("role")==="teacher")?"Profile":null}
             </a>
           </li>
           <li>

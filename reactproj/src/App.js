@@ -3,7 +3,6 @@ import Header from './components/header';
 import Sign from './pages/sign';
 import LoginForm from './pages/login';
 import LogoutForm from './pages/logout';
-import Footer from './components/footer';
 import Home from './pages/home';
 import FlightTable from './pages/search';
 import Upcoming_journey from './pages/upcoming';
@@ -23,7 +22,7 @@ import Show from './pages/show_occ';
 import Error_ from './pages/error';
 import Preference from './pages/preference';
 import Modify from './pages/modify';
-
+import Btplist from './pages/btp_list'
 function App() {
   
   const [origin_name, setOrigin_name] = useState('');
@@ -55,11 +54,9 @@ function App() {
     setfare('');
     setseats([]);
   }
-  function handlesignin(email,status){
-    if(status==="user")
-      localStorage.setItem("email", email);
-    if(status==="admin") localStorage.setItem("admin",email);
-    console.log(email);
+  function handlesignin(ID,role){
+    localStorage.setItem("id", ID);
+    localStorage.setItem("role",role);
   }
   function handleFlight(flight,fare){
     setfare(Number(fare)*Number(people))
@@ -111,12 +108,12 @@ function App() {
           <Route path='/mywallet' element={<Wallet></Wallet>}/>
           <Route path='/Admin/show_occ' element={<Show />}/>
           <Route path='/error' element={<Error_ />}/>
+          <Route path='/list' element={<Btplist />}/>
           <Route path='/payment1' element={passengers && age?<Payment1 passengers={passengers} age={age}/>:null}/>
           <Route path='/preference' element= {people && flight && date && Class? <Preference people ={Number(people)} flight={flight} date={date} Class={Class} onSubmitseat={handleseat}/> : null}/>
           
         </Routes>
       </BrowserRouter>
-      <Footer />
     </div>
   );
 }
